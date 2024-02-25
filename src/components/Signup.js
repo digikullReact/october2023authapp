@@ -1,5 +1,8 @@
 import React ,{useState} from 'react'
 import { Input ,Col, Row,Button } from 'antd';
+import axios  from 'axios'; // es6 imports
+
+const Api="http://ubuntu@ec2-13-58-234-56.us-east-2.compute.amazonaws.com:8080/signup"
 const Signup = () => {
 
     const [state,setState]=useState({
@@ -22,7 +25,13 @@ const Signup = () => {
     }
 
     const handleClick=()=>{
-        console.log(state);
+        // we have to make the api call 
+        axios.post(Api,state).then(res=>{
+          console.log(res.data);
+
+        }).catch(err=>{
+          console.log(err);
+        })
     }
   return (
     <>
@@ -44,7 +53,7 @@ const Signup = () => {
 </Row>
 <Row style={{marginTop:"30px"}}>
 
-  <Col span={8} offset={8}> <Input placeholder="Password" name='password' onChange={handleChange}  /></Col>
+  <Col span={8} offset={8}> <Input placeholder="Password" type='password' name='password' onChange={handleChange}  /></Col>
 
 </Row>
 <Row style={{marginTop:"30px"}}>
