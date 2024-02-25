@@ -1,11 +1,31 @@
 import React,{useEffect,useState} from 'react'
 import axios  from 'axios'; // es6 imports
-
+import { Space, Table, Tag } from 'antd';
 const Api="http://ubuntu@ec2-13-58-234-56.us-east-2.compute.amazonaws.com:8080"
 
 const Dashboard = () => {
     const [state,setState]=useState([]);
 
+    const columns = [
+        {
+          title: 'Name',
+          dataIndex: 'name',
+          key: 'name',
+          render: (text) => <a>{text}</a>,
+        },
+        {
+          title: 'Username',
+          dataIndex: 'username',
+          key: 'username',
+        },
+        {
+          title: 'Password',
+          dataIndex: 'password',
+          key: 'password',
+        },
+        
+      ];
+     
 
     useEffect(()=>{
 
@@ -24,11 +44,7 @@ const Dashboard = () => {
 
   return (
     <div>
-     {
-        state.map(ele=>(
-            <li>{ele.name}</li>
-        ))
-     }
+  <Table columns={columns} dataSource={state} />;
 
 
     </div>
