@@ -1,10 +1,20 @@
 import React,{useEffect,useState} from 'react'
 import axios  from 'axios'; // es6 imports
-import { Space, Table, Tag } from 'antd';
+import { Button, Space, Table, Tag } from 'antd';
+import { useNavigate } from 'react-router-dom';
+
 const Api="http://ubuntu@ec2-13-58-234-56.us-east-2.compute.amazonaws.com:8080"
 
 const Dashboard = () => {
     const [state,setState]=useState([]);
+
+   const navigate= useNavigate();
+    const logout=()=>{
+      localStorage.removeItem("token");
+
+      navigate("/login");
+
+    }
 
     const columns = [
         {
@@ -45,6 +55,9 @@ const Dashboard = () => {
   return (
     <div>
   <Table columns={columns} dataSource={state} />;
+
+
+  <Button style={{width:"200px"}} type="primary"  onClick={logout}>Logout</Button>
 
 
     </div>

@@ -32,7 +32,8 @@ const handleClick=()=>{
       console.log(res.data);
       if (res.data.token){
          // we will redirect to the dahsboard
-
+        // we will save the token as well in the localstorage
+        localStorage.setItem("token",res.data.token)
          navigate("/dashboard");
       }else{
         alert("Incorrect username or Password");

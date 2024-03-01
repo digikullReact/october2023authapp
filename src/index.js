@@ -10,6 +10,7 @@ import {
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Dashboard from './components/Dashboard';
+import PrivateRoute from './components/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,10 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard/>,
+    element:<PrivateRoute>
+  <Dashboard/>
+    </PrivateRoute> 
+  
   }
 ]);
 
